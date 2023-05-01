@@ -1,0 +1,9 @@
+Page 15 - 15
+Key Points:
+
+1. This chapter is about getting started with Git.
+2. Version control is a system that records changes to a file or set of files over time.
+3. Git is a type of version control tool.
+4. Using a VCS allows you to revert selected files back to a previous state, revert the entire project back to a previous state, compare changes over time, see who last modified something that might be causing a problem, who introduced an issue and when, and more.
+5. Many people use a local VCSs to keep track of changes to files, but this approach can be error prone.
+6. Git is a distributed version control system that is designed to overcome the limitations of traditional VCSs.

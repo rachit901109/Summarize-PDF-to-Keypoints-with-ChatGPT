@@ -1,0 +1,252 @@
+Page 15 - 16
+Key points for 'Getting Started':
+- This chapter is about getting started with Git.
+- Version control is a system that records changes to a file or set of files over time so that you can recall specific versions later.
+- A Version Control System (VCS) is a wise thing to use for designers who want to keep every version of an image or layout.
+- Local VCSs have a simple database that keeps all the changes to files under revision control.
+- Centralized VCSs have a single server that contains all the versioned files, and a number of clients that check out files from that central place.
+Page 17 - 18
+- Centralized version control offers advantages over local VCSs such as greater control and easier administration
+- However, a single point of failure is a serious downside to the system
+- Distributed Version Control Systems (DVCSs) offer a solution by fully mirroring the repository, including its full history, and allowing for multiple remote repositories to prevent loss of data
+- DVCSs allow for more flexible workflows that aren't possible in centralized systems 
+- Examples of DVCSs include Git, Mercurial, Bazaar, and Darcs.
+- Figure 2 shows a centralized version control diagram while Figure 3 shows a distributed version control diagram.
+Page 19 - 19
+1. Git began in 2005 as a way for the Linux kernel project to use a tool after the breakdown of its relationship with BitKeeper.
+2. Git was designed to be fast, efficient, fully-distributed, and support non-linear development.
+3. Git has evolved to become easy to use and retain its initial qualities.
+4. Git stores information differently than other VCSs, as snapshots instead of file-based changes.
+5. Understanding the differences in how Git stores and thinks about information is crucial to using it effectively.
+Page 20 - 20
+- Git thinks of its data as a series of snapshots of a miniature filesystem
+- Every time you commit, Git takes a picture of what all your files look like at that moment and stores a reference to that snapshot
+- If files have not changed, Git doesn't store the file again, just a link to the previous identical file it has already stored
+- Git thinks about its data more like a stream of snapshots, rather than a VCS
+- Most operations in Git need only local files and resources to operate, generally no information is needed from another computer on your network
+- Git's local operations are perceived as almost instantaneous due to having the entire history of the project right there on your local disk.
+Page 21 - 21
+- Git allows fast browsing of project history by reading directly from your local database
+- Git can look up changes between versions of a file locally instead of going to the server
+- Git allows offline work and committing locally before uploading changes
+- Everything in Git is checksummed using SHA-1 hashes, making it impossible to lose information or corrupt files without detection
+- Git generally only adds data to the database and makes it difficult to erase data
+- Git has three main states for files: modified, staged, and committed.
+Page 22 - 23
+- Git has three main sections: the working tree, the staging area, and the Git directory
+- Modified files have been changed but not committed to the database
+- Staged files are marked to go into the next commit snapshot
+- Committed files are safely stored in the local database
+- The command line is the only place you can run all Git commands
+- Installing Git can be done through package or binary installers, or by compiling source code
+- Git is backwards compatible, but it's recommended to use the latest version for best results.
+Page 24 - 25
+- There are multiple ways to install Git on macOS.
+- The easiest is to install Xcode Command Line Tools or download the binary installer from the Git website.
+- Git for Windows is available for download on the Git website or Git Chocolatey package can be used for automated installation.
+- Some people may prefer to install Git from source for the most recent version.
+- Dependencies, such as autotools and curl, are required to install Git from source.
+- Additional dependencies may be needed for adding documentation in various formats.
+- Latest tagged release tarball can be obtained from the kernel.org site or GitHub website.
+Page 26 - 26
+\AppData\Roaming\Git\config  on Windows Vista and newer.
+
+Key points:
+- The latest version of Git can be found on GitHub or kernel.org
+- To install Git, download and unzip the latest version, then compile and install using the commands provided
+- Git config can be used to customize your Git environment, with configuration variables stored in different locations depending on the scope of the settings
+- Git looks for config files in specific locations on Windows systems, with different locations for different versions of Git.
+Page 27 - 28
+- The file location of the Git config on Windows Vista and newer is C:\ProgramData\Git\config.
+- The config file can only be changed by git config -f <file> as an admin.
+- You can view all of your settings and where they are coming from using git config --list --show-origin.
+- You should set your user name and email address using git config --global user.name and git config --global user.email.
+- You can configure the default text editor for Git messages using git config --global core.editor.
+- On a Windows system, you may need to specify the full path to your text editor executable file.
+- The default branch name for a new Git repository is "master", but you can change it using git config --global init.defaultBranch.
+- You can check your Git configuration settings using git config --list and git config <key>.
+Page 29 - 30
+Key points for '$ git config --show-origin rerere.autoUpdate:
+
+- Command used to display the value of the rerere.autoUpdate configuration variable.
+- The configuration variable is set to "false".
+- The configuration file where the variable is set is "/home/johndoe/.gitconfig".
+Page 31 - 31
+more information on the .git directory and how it works.
+Cloning an Existing Repository
+To copy an existing Git repository from elsewhere, you need to clone it. For example, to clone the
+official Git repository for the Git software itself, you can run:
+$ git clone git://github.com/git/git.git
+This creates a new directory named git that contains all of the necessary files for that repository.
+Tracking Changes
+Once you have a Git repository set up, you can begin tracking changes to your files. This involves
+two steps:
+1. Tell Git which files to start tracking by adding them to the staging area using the git add
+command. For example, to start tracking all files in the current directory, run:
+$ git add .
+2. Commit the changes to the repository using the git commit command. This creates a snapshot
+of the repository at that point in time. For example, to commit all tracked changes with a
+message describing the changes, run:
+$ git commit -m "Initial commit"
+Ignoring Files
+Sometimes you don’t want Git to track certain files or directories, such as temporary files or build
+output. You can tell Git to ignore these files by creating a .gitignore file in the root of your
+repository, and listing the files and patterns to ignore. For example, to ignore all files with the
+extension .log, add the following line to your .gitignore file:
+*.log
+Undoing Mistakes
+Git makes it easy to undo mistakes. If you make a commit and later realize you need to make changes,
+you can create a new commit that undoes the changes by running:
+$ git revert <commit>
+Similarly, if you accidentally make changes to a file that you want to discard, you can revert the
+file back to its last committed state by running:
+$ git checkout <file>
+Viewing History
+You can view the history of your Git repository using the git log command. This shows a list of all
+commits in reverse chronological order, along with their commit messages, authors, and timestamps.
+Pushing and Pulling
+Once you have made changes to your local repository, you can push these changes to a remote
+repository so that others can access them. To do this, run:
+$ git push <remote> <branch>
+Similarly, you can pull changes from a remote repository into your local repository by running:
+$ git pull <remote> <branch>
+Page 32 - 32
+- To start version-controlling existing files, use "git add" commands followed by "git commit"
+- "git clone" is used to get a copy of an existing Git repository
+- Git receives a full copy of nearly all data that the server has when cloning a repository
+- Every version of every file for the history of the project is pulled down by default when you run "git clone"
+- If a server disk gets corrupted, you can often use nearly any of the clones on any client to set the server back to the state it was in when it was cloned
+- Different transfer protocols can be used with Git, including https:// and git://
+- "Getting Git on a Server" introduces all available options the server can set up to access a Git repository and the pros and cons of each.
+Page 33 - 34
+- Git allows you to track changes to your repository by creating snapshots of the changes at different stages.
+- Each file in the working directory can be in either a tracked or untracked state.
+- Tracked files are ones that Git knows about and have been included in a previous snapshot, or newly staged files.
+- Untracked files are ones that have not yet been included in a snapshot or staging area.
+- The git status command is used to check the status of tracked and untracked files.
+- When a new file is added to the project, it is initially untracked.
+- To track a new file, the command git add is used.
+- Once a file is tracked, it can be staged for committing and included in a snapshot of the repository.
+Page 35 - 36
+- Use "git restore --staged <file>..." to unstage a file
+- Git add command is used to begin tracking new files, stage files, and mark merge-conflicted files as resolved
+- Git stages a file exactly as it is when git add command is run
+- Modified tracked files appear under "Changes not staged for commit" in git status output
+- Short status flag "git status -s" provides a more compact output of changes
+Page 37 - 37
+- The MM Rakefile has changes in two files: lib/git.rb and lib/simplegit.rb
+- The status of each file is shown in the output with A for added, M for modified, and ?? for untracked files
+- A .gitignore file can be used to exclude certain files or directories from being tracked by Git
+- The .gitignore file uses standard glob patterns to match files or directories to exclude
+- Patterns can be negated with an exclamation point (!) and can match nested directories with **/
+Page 38 - 39
+- .gitignore files allow you to specify files and directories to ignore in a Git repository
+- Rules in an ignore file apply recursively to the entire repository, but nested ignore files can override rules for specific directories
+- The git status command can be used to see which files have been modified or staged, but git diff shows exact line changes
+- git diff with no arguments shows changes you've made but not yet staged
+- git diff --staged shows changes that have been staged but not yet committed.
+Page 40 - 41
+- Git diff allows you to see changes in a file that are staged or unstaged.
+- Use git add to stage changes in a file.
+- Use git diff to see unstaged changes.
+- Use git diff --cached to see staged changes.
+- Git difftool allows you to view diffs in a graphical or external diff viewing program.
+- Commit changes using git commit.
+- Unstaged changes won't be included in the commit.
+- Use an editor to enter a commit message, which can be configured with git config.
+Page 42 - 42
+- When committing changes in Git, you provide a message to describe the changes made
+- Passing the -v option can provide an explicit reminder of the modifications made by including the diff of the change in the editor 
+- Alternatively, you can add the commit message inline with the commit command using the -m flag 
+- A commit records a snapshot of your project at the time of commit which can be reverted to or compared to later 
+- The staging area can be skipped using the -a option with the commit command, which stages every file already tracked before the commit.
+Page 43 - 44
+- The -a flag in git commit includes all changed files automatically without the need for git add
+- To remove a file from Git, you must use git rm and commit the change
+- The --cached option in git rm removes the file from the staging area but keeps it in the working directory
+- Git does not track file movement explicitly but is able to detect it after the fact
+- Git has a mv command that can be used to rename files and Git will recognize it as a renamed file in its status output.
+Page 45 - 46
+- git rm README.md removes the README.md file from the repository
+- git add README adds the README file to the repository
+- git figures out a file rename implicitly, whether done through git mv or any other tool
+- git log is a powerful tool to view the commit history of a repository
+- by default, git log lists commits in reverse chronological order with their SHA-1 checksum, author, date, and message
+- many options are available for git log, including -p/--patch to show the difference introduced in each commit and --stat to show abbreviated stats for each commit
+Page 47 - 48
+- The '$ git log --stat' command displays a list of modified files, number of files changed, and number of lines added/deleted for each commit entry.
+- The '--pretty' option allows the user to change the log output format to pre-built options such as oneline, short, full, and fuller.
+- The 'format' option allows the user to specify their own log output format, which is useful for machine parsing.
+- Table 1 lists useful specifiers for the 'format' option.
+- The 'author' is the person who originally wrote the work, while the 'committer' is the person who last applied the work.
+- The '--graph' option displays a visual representation of branch and merge history.
+Page 49 - 49
+- Add timeout protection to grit (commit: 5a09431)
+- Support for heads with slashes in them (commit: e1193f8)
+- Require time for xmlschema (commit: d6016bc)
+- Merge branch 'defunkt' into local (commit: 11d191e)
+- Common options to git log include: -p, --stat, --shortstat, --name-only, --name-status, --abbrev-commit, --relative-date, --graph, --pretty, and --oneline.
+- Useful limiting options for git log include: --since and --until, which allow you to show commits made within a certain time frame.
+Page 50 - 50
+would use the following command:
+$ git log --author='Junio Hamano' --grep='test' --after='2008-10-01' --before='2008-10-31'
+--no-merges -- path/to/test/files
+
+Key Points:
+
+- Git's log command allows you to filter the commit history based on search criteria.
+- The --author option filters on a specific author, and the --grep option lets you search for keywords in the commit messages.
+- Multiple instances of both --author and --grep options can be used, limiting the output to commits that match any of the patterns.
+- The -S option (Git's "pickaxe") shows only commits that changed the number of occurrences of a specific string.
+- A path can be specified to limit the log output to commits that introduced a change to specific files.
+- Other common options to limit the output include -<n> to show only the last n commits, and --since/--after, --until/--before, and --committer to filter based on time or committer.
+Page 51 - 51
+- The given Git command shows 6 out of nearly 40,000 commits that match certain criteria.
+- The option "--no-merges" can prevent merge commits from cluttering up the log history.
+- Undoing changes can be done using the "--amend" option with the "git commit" command.
+- The "--amend" option allows for changes to be added to the previous commit or for the commit message to be updated.
+- Care should be taken when undoing changes as some work may be lost if done incorrectly.
+Page 52 - 53
+understand the potential consequences.
+In summary, the key points for '$ git commit --amend' are:
+
+- Amending your last commit replaces it entirely with a new, improved commit.
+- Use it to make minor improvements without cluttering your repository history.
+- Only amend commits that are still local and have not been pushed somewhere.
+- 'git reset HEAD <file>...' unstages a staged file.
+- 'git checkout -- <file>...' unmodifies a modified file.
+Page 54 - 54
+1. Stashing and branching are better ways to handle changes you want to keep but don't want to commit right away.
+2. Anything committed in Git can be recovered, but anything lost that was never committed is likely gone for good.
+3. Git restore is an alternative to git reset and is used for many undo operations.
+4. Git status command reminds you how to undo changes to your staging area and working directory.
+5. To unstage a file, use git restore --staged <file>.
+Page 55 - 55
+The CONTRIBUTING.md file has been modified but is currently unstaged.
+You can unmodify a modified file by using the git restore command.
+Using git restore <file> will discard any changes made to the file and replace it with the last staged or committed version.
+It is important to only use git restore <file> if you are absolutely sure that you do not want your unsaved local changes.
+To collaborate with others on a Git project, you need to know how to manage remote repositories.
+Remote repositories are versions of your project hosted on the Internet or network somewhere.
+You can have several remote repositories, each of which can be read-only or read/write for you.
+Managing remote repositories includes adding and removing them, managing remote branches, and defining which branches are being tracked.
+Remote repositories can also be located on your local machine.
+Page 56 - 56
+remote server. Also, it’s important to note that the names of the remotes (e.g. bakkdoor, cho45, defunkt, koke) are just arbitrary labels and have no impact on how Git communicates with the remote repositories.
+Page 57 - 57
+last cloned or fetched from it. To merge changes from the remote branch into your current branch, use git pull <remote> <branch> . This retrieves the new work from the remote and merges it into your current branch. 
+
+Other key points for 'Server':
+- A server is a computer or system that provides data or services to other computers or devices on a network.
+- In Git, a server can be a remote repository that stores the code and project history for a project, and allows multiple developers to collaborate and make changes to the project.
+- There are different types of server configurations for Git, including centralized (where there is a single server that everyone pushes and pulls changes to/from) and distributed (where each developer has their own copy of the repository and can push/pull changes to/from each other).
+- Git supports multiple protocols for accessing remote repositories, including HTTPS, SSH, and Git-specific protocols.
+- It's important to secure your Git server to prevent unauthorized access and protect sensitive data. This can involve setting up authentication and access controls, encrypting data in transit and at rest, and monitoring for suspicious activity.
+Page 58 - 58
+- The git fetch command downloads data to your local repository, but doesn't automatically merge it with your work.
+- To merge with the fetched data, you have to merge it manually into your work.
+- If your current branch tracks a remote branch, you can use git pull to automatically fetch and merge that remote branch into your current branch.
+- Git clone sets up your local master branch to track the remote master branch by default.
+- Git pull will warn you to set the pull.rebase variable starting from version 2.27 onwards.
+- You can push upstream using the command git push <remote> <branch>.
+- The git remote show command can be used to see more information about a particular remote.
